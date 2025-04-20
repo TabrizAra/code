@@ -6,7 +6,10 @@ pipeline {
         stage {'BUILD'} {
             steps {
                 echo "This is build stage"
-                sh 'sleep 5'
+                sh ''' ls
+                       sleep 5
+                       exit 0
+                   '''
             }
         }
         stage {'TEST'} {
@@ -76,9 +79,14 @@ pipeline {
 }
 
 // pipeline agents 
-agent(control where to execute my stages in any executors,  ) any means --- automatically scales and executes there based on load 
+1.agent(control where to execute my stages in any executors,  ) any means --- automatically scales and executes there based on load 
     - any: 
 
     we can define agents at stage level as well
 
+2. none
 If i want to decide the agents at stage level then we have to give agent none at pipeline level, agent at every stage 
+
+3. label:
+
+multiple line bash script under sh block with 3 quotes '''  ''' 
