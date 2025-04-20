@@ -1,0 +1,84 @@
+pipeline {
+    agent any{
+        label 'jenkins'
+    }
+    stages {
+        stage {'BUILD'} {
+            steps {
+                echo "This is build stage"
+                sh 'sleep 5'
+            }
+        }
+        stage {'TEST'} {
+            steps {
+                echo "This is test stage"
+                sh 'sleep 5'
+            }
+        }
+        stage {'TEST'} {
+            steps {
+                echo "This is test stage"
+                sh 'sleep 5'
+            }
+        }
+    }
+}
+
+pipeline {
+    agent none
+    stages {
+        stage {'BUILD'} {
+            steps {
+                echo "This is build stage"
+                sh 'sleep 5'
+            }
+        }
+        stage {'TEST'} {
+            agent { label 'jenkins' }
+            steps {
+                echo "This is test stage"
+                sh 'sleep 5'
+            }
+        }
+        stage {'TEST'} {
+            agent { label 'master' }
+            steps {
+                echo "This is test stage"
+                sh 'sleep 5'
+            }
+        }
+    }
+}
+
+pipeline {
+    agent any
+    stages {
+        stage {'BUILD'} {
+            steps {
+                echo "This is build stage"
+                sh 'sleep 5'
+            }
+        }
+        stage {'TEST'} {
+            steps {
+                echo "This is test stage"
+                sh 'sleep 5'
+            }
+        }
+        stage {'TEST'} {
+            agent { label 'master' }
+            steps {
+                echo "This is test stage"
+                sh 'sleep 5'
+            }
+        }
+    }
+}
+
+// pipeline agents 
+agent(control where to execute my stages in any executors,  ) any means --- automatically scales and executes there based on load 
+    - any: 
+
+    we can define agents at stage level as well
+
+If i want to decide the agents at stage level then we have to give agent none at pipeline level, agent at every stage 
